@@ -102,6 +102,11 @@ let check_sym v =  match v with
 | Concrete _ ->  assert false
 | Symbolic _|Label _|Tag _ as sym -> sym
 
+let is_virtual v = match v with
+| Symbolic (Virtual _) -> true
+| _ -> false
+
+
 module type S =  sig
 
   module Scalar : Scalar.S

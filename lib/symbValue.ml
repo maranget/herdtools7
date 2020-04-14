@@ -86,6 +86,7 @@ module Make(Cst:Constant.S) = struct
 (************************************)
 
 (* generic *)
+
   exception Undetermined
 
   let is_zero v = match v with
@@ -256,9 +257,10 @@ module Make(Cst:Constant.S) = struct
   let tlbloc = op_pte_tlb "tlbloc" op_tlbloc
 
   let is_virtual v = match v with
-  | Val (Symbolic (Virtual _)) -> one
-  | Val _ -> zero
+  | Val c -> Constant.is_virtual c
   | Var _ -> raise Undetermined
+
+  let is_virtual_v v =  if is_virtual v then one else zero
 
   let op1 op =
     let open! Scalar in
@@ -291,7 +293,7 @@ module Make(Cst:Constant.S) = struct
           (fun s -> logand (lognot (mask_many nb k)) s)
     | TLBLoc -> tlbloc
     | PTELoc -> pteloc
-    | IsVirtual -> is_virtual
+    | IsVirtual -> is_virtual_v
 
 
 

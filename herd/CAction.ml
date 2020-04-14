@@ -332,7 +332,7 @@ end = struct
     | _ -> false)
   ]
 
-  let arch_fences = []
+  let arch_rels = []
 
   let is_isync _ = raise Misc.NoIsync
   let pp_isync = "???"

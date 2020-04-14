@@ -233,7 +233,7 @@ end = struct
      "RMW",is_atomic;
      "Ftotal",is_total_barrier;]
 
-  let arch_fences = []
+  let arch_rels = []
 
 
 end
